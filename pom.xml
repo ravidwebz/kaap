@@ -30,9 +30,9 @@
     </modules>
     <name>Kaap :: Kubernetes Autoscaling for Apache Pulsar</name>
     <scm>
-        <connection>scm:git:https://github.com/datastax/kaap.git</connection>
-        <developerConnection>scm:git:https://github.com/datastax/kaap.git</developerConnection>
-        <url>https://github.com/datastax/kaap</url>
+        <connection>scm:git:https://github.com/ravidwebz/kaap.git</connection>
+        <developerConnection>scm:git:https://github.com/ravidwebz/kaap.git</developerConnection>
+        <url>https://github.com/ravidwebz/kaap</url>
         <tag>HEAD</tag>
     </scm>
     <properties>
@@ -47,8 +47,8 @@
         <testng.version>7.7.0</testng.version>
         <mockito-core.version>4.10.0</mockito-core.version>
         <lombok.version>1.18.32</lombok.version>
-        <spotbugs-maven-plugin.version>4.7.2.1</spotbugs-maven-plugin.version>
-        <spotbugs.version>4.7.2</spotbugs.version>
+        <!-- <spotbugs-maven-plugin.version>4.7.2.1</spotbugs-maven-plugin.version> -->
+        <!-- <spotbugs.version>4.7.2</spotbugs.version> -->
         <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
         <commons-codec.version>1.15</commons-codec.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
@@ -96,13 +96,13 @@
                 <artifactId>awaitility</artifactId>
                 <version>${awaitility.version}</version>
             </dependency>
-            <dependency>
+            <!-- <dependency>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-annotations</artifactId>
                 <version>${spotbugs.version}</version>
                 <scope>provided</scope>
                 <optional>true</optional>
-            </dependency>
+            </dependency> -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
@@ -185,12 +185,12 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-annotations</artifactId>
             <scope>provided</scope>
             <optional>true</optional>
-        </dependency>
+        </dependency> -->
 
     </dependencies>
 
@@ -224,14 +224,14 @@
                         </compilerArgs>
                     </configuration>
                 </plugin>
-                <plugin>
+                <!-- <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
                     <version>${spotbugs-maven-plugin.version}</version>
                     <configuration>
                         <excludeFilterFile>src/spotbugsExclude.xml</excludeFilterFile>
                     </configuration>
-                </plugin>
+                </plugin> -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -272,7 +272,7 @@
         </pluginManagement>
 
         <plugins>
-            <plugin>
+            <!-- <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <executions>
@@ -285,7 +285,7 @@
                     </execution>
                 </executions>
 
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>

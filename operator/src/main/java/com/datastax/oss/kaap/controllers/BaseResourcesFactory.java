@@ -964,8 +964,8 @@ public abstract class BaseResourcesFactory<T> {
                     local keyFile=/pulsar/certs/tls.key
                     caFile=%s
                     p12File=/pulsar/tls.p12
-                    keyStoreFile=/pulsar/tls.keystore.jks
-                    trustStoreFile=/pulsar/tls.truststore.jks
+                    keyStoreFile=/pulsar/data/tls.keystore.jks
+                    trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
                     head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
                     export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)

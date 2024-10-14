@@ -563,7 +563,7 @@ public class BrokerControllerTest {
         expectedData.put("PULSAR_PREFIX_backlogQuotaDefaultRetentionPolicy", "producer_exception");
         expectedData.put("PULSAR_PREFIX_tlsEnabled", "true");
         expectedData.put("PULSAR_PREFIX_tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", " /pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", " /pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerServicePortTls", "6651");
         expectedData.put("PULSAR_PREFIX_brokerClientTlsEnabled", "true");
@@ -583,14 +583,14 @@ public class BrokerControllerTest {
         final String stsCommand = sts.getSpec().getTemplate().getSpec().getContainers().get(0)
                 .getArgs().get(0);
         Assert.assertEquals(stsCommand, """
-                openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && certconverter() {
+                openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && certconverter() {
                     local name=pulsar
                     local crtFile=/pulsar/certs/tls.crt
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
                     p12File=/pulsar/tls.p12
-                    keyStoreFile=/pulsar/tls.keystore.jks
-                    trustStoreFile=/pulsar/tls.truststore.jks
+                    keyStoreFile=/pulsar/data/tls.keystore.jks
+                    trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
                     head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
                     export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
@@ -675,14 +675,14 @@ public class BrokerControllerTest {
         final String jobCommand = sts.getSpec().getTemplate().getSpec().getContainers().get(0)
                 .getArgs().get(0);
         Assert.assertEquals(jobCommand, """
-                openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && certconverter() {
+                openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && certconverter() {
                     local name=pulsar
                     local crtFile=/pulsar/certs/tls.crt
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
                     p12File=/pulsar/tls.p12
-                    keyStoreFile=/pulsar/tls.keystore.jks
-                    trustStoreFile=/pulsar/tls.truststore.jks
+                    keyStoreFile=/pulsar/data/tls.keystore.jks
+                    trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
                     head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
                     export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
@@ -753,7 +753,7 @@ public class BrokerControllerTest {
         expectedData.put("PULSAR_PREFIX_backlogQuotaDefaultRetentionPolicy", "producer_exception");
         expectedData.put("PULSAR_PREFIX_tlsEnabled", "true");
         expectedData.put("PULSAR_PREFIX_tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", " /pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", " /pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerServicePortTls", "6651");
         expectedData.put("PULSAR_PREFIX_brokerClientTlsEnabled", "true");
@@ -762,7 +762,7 @@ public class BrokerControllerTest {
         expectedData.put("PULSAR_PREFIX_brokerClient_tlsHostnameVerificationEnable", "true");
         expectedData.put("PULSAR_PREFIX_bookkeeperTLSClientAuthentication", "true");
         expectedData.put("PULSAR_PREFIX_bookkeeperTLSKeyFileType", "PEM");
-        expectedData.put("PULSAR_PREFIX_bookkeeperTLSKeyFilePath", "/pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_bookkeeperTLSKeyFilePath", "/pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_bookkeeperTLSCertificateFilePath", "/pulsar/certs/tls.crt");
         expectedData.put("PULSAR_PREFIX_bookkeeperTLSTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_bookkeeperTLSTrustCertTypes", "PEM");
@@ -1948,7 +1948,7 @@ public class BrokerControllerTest {
         expectedData.put("PULSAR_PREFIX_backlogQuotaDefaultRetentionPolicy", "producer_exception");
         expectedData.put("PULSAR_PREFIX_tlsEnabled", "true");
         expectedData.put("PULSAR_PREFIX_tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", " /pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", " /pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerServicePortTls", "6651");
         expectedData.put("PULSAR_PREFIX_brokerClientTlsEnabled", "true");
@@ -1970,7 +1970,7 @@ public class BrokerControllerTest {
                         + ".intercept.AppendBrokerTimestampMetadataInterceptor");
         expectedData.put("PULSAR_PREFIX_brokerDeleteInactiveTopicsEnabled", "false");
         expectedData.put("PULSAR_PREFIX_kopSchemaRegistryEnableTls", "true");
-        expectedData.put("PULSAR_PREFIX_kopSslTruststoreLocation", "/pulsar/tls.truststore.jks");
+        expectedData.put("PULSAR_PREFIX_kopSslTruststoreLocation", "/pulsar/data/tls.truststore.jks");
 
 
 

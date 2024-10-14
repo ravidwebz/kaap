@@ -230,7 +230,7 @@ public class AutorecoveryControllerTest {
         expectedData.put("PULSAR_PREFIX_tlsProviderFactoryClass", "org.apache.bookkeeper.tls.TLSContextFactory");
         expectedData.put("PULSAR_PREFIX_tlsCertificatePath", "/pulsar/certs/tls.crt");
         expectedData.put("PULSAR_PREFIX_tlsKeyStoreType", "PEM");
-        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustStoreType", "PEM");
         expectedData.put("PULSAR_PREFIX_tlsClientAuthentication", "true");
         expectedData.put("PULSAR_PREFIX_tlsTrustStore", "/etc/ssl/certs/ca-certificates.crt");
@@ -245,7 +245,7 @@ public class AutorecoveryControllerTest {
         final String stsCommand = depl.getSpec().getTemplate().getSpec().getContainers().get(0)
                 .getArgs().get(0);
         Assert.assertEquals(stsCommand, "bin/apply-config-from-env.py conf/bookkeeper.conf && openssl pkcs8 -topk8 "
-                + "-inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && "
+                + "-inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && "
                 + "OPTS=\"${OPTS} -Dlog4j2.formatMsgNoLookups=true\" "
                 + "exec bin/bookkeeper autorecovery");
     }

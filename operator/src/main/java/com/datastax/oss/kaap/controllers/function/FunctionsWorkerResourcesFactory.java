@@ -255,14 +255,14 @@ public class FunctionsWorkerResourcesFactory extends BaseResourcesFactory<Functi
             final String fullCaPath = getFullCaPath();
             data.put("tlsTrustCertsFilePath", fullCaPath);
             data.put("brokerClientTrustCertsFilePath", fullCaPath);
-            data.put("tlsKeyFilePath", "/pulsar/tls-pk8.key");
+            data.put("tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
         }
         final boolean enabledWithBroker = isTlsEnabledFromFunctionsWorkerToBroker();
         if (enabledWithBroker) {
             data.put("useTls", "true");
             data.put("tlsEnabledWithKeyStore", "true");
-            data.put("tlsKeyStore", "/pulsar/tls.keystore.jks");
-            data.put("tlsTrustStore", "/pulsar/tls.truststore.jks");
+            data.put("tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+            data.put("tlsTrustStore", "/pulsar/data/tls.truststore.jks");
             data.put("tlsEnableHostnameVerification", "true");
         }
         if (isTlsEnabledOnBookKeeper()) {
@@ -406,7 +406,7 @@ public class FunctionsWorkerResourcesFactory extends BaseResourcesFactory<Functi
 
         if (tlsEnabledOnBroker && enabledWithBroker) {
             mainArg += "openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key "
-                    + "-out /pulsar/tls-pk8.key -nocrypt && "
+                    + "-out /pulsar/data/tls-pk8.key -nocrypt && "
                     + generateCertConverterScript() + " && ";
         }
         mainArg += "bin/apply-config-from-env.py conf/broker.conf && "

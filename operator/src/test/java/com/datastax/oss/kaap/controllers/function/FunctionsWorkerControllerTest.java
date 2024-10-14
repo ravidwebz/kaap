@@ -568,11 +568,11 @@ public class FunctionsWorkerControllerTest {
         expectedData.put("tlsCertificateFilePath", "/pulsar/certs/tls.crt");
         expectedData.put("tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("brokerClientTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
-        expectedData.put("tlsKeyFilePath", "/pulsar/tls-pk8.key");
+        expectedData.put("tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
         expectedData.put("useTls", "true");
         expectedData.put("tlsEnabledWithKeyStore", "true");
-        expectedData.put("tlsKeyStore", "/pulsar/tls.keystore.jks");
-        expectedData.put("tlsTrustStore", "/pulsar/tls.truststore.jks");
+        expectedData.put("tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+        expectedData.put("tlsTrustStore", "/pulsar/data/tls.truststore.jks");
         expectedData.put("tlsEnableHostnameVerification", "true");
 
         final Map<String, Object> data = (Map<String, Object>) SerializationUtil
@@ -637,11 +637,11 @@ public class FunctionsWorkerControllerTest {
         expectedData.put("tlsCertificateFilePath", "/pulsar/certs/tls.crt");
         expectedData.put("tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("brokerClientTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
-        expectedData.put("tlsKeyFilePath", "/pulsar/tls-pk8.key");
+        expectedData.put("tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
         expectedData.put("useTls", "true");
         expectedData.put("tlsEnabledWithKeyStore", "true");
-        expectedData.put("tlsKeyStore", "/pulsar/tls.keystore.jks");
-        expectedData.put("tlsTrustStore", "/pulsar/tls.truststore.jks");
+        expectedData.put("tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+        expectedData.put("tlsTrustStore", "/pulsar/data/tls.truststore.jks");
         expectedData.put("tlsEnableHostnameVerification", "true");
         expectedData.put("bookkeeperTLSClientAuthentication", "true");
 

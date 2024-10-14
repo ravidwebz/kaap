@@ -79,7 +79,7 @@ spec:
       containers:
       - args:
         - |
-          cat /pulsar/token-superuser/superuser.jwt | tr -d '\n' > /pulsar/data/token-superuser-stripped.jwt && bin/apply-config-from-env.py conf/broker.conf && cp -f funcconf/functions_worker.yml conf/functions_worker.yml && export PF_workerHostname="${workerHostname}.pulsar-cluster-function" && bin/gen-yml-from-env.py conf/functions_worker.yml && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && OPTS="${OPTS} -Dlog4j2.formatMsgNoLookups=true" exec bin/pulsar functions-worker
+          cat /pulsar/token-superuser/superuser.jwt | tr -d '\n' > /pulsar/data/token-superuser-stripped.jwt && bin/apply-config-from-env.py conf/broker.conf && cp -f funcconf/functions_worker.yml conf/functions_worker.yml && export PF_workerHostname="${workerHostname}.pulsar-cluster-function" && bin/gen-yml-from-env.py conf/functions_worker.yml && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && OPTS="${OPTS} -Dlog4j2.formatMsgNoLookups=true" exec bin/pulsar functions-worker
         command:
         - sh
         - -c

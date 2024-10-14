@@ -98,7 +98,7 @@ public class AutorecoveryResourcesFactory extends BaseResourcesFactory<Autorecov
             data.put("tlsProviderFactoryClass", "org.apache.bookkeeper.tls.TLSContextFactory");
             data.put("tlsCertificatePath", "/pulsar/certs/tls.crt");
             data.put("tlsKeyStoreType", "PEM");
-            data.put("tlsKeyStore", "/pulsar/tls-pk8.key");
+            data.put("tlsKeyStore", "/pulsar/data/tls-pk8.key");
             data.put("tlsTrustStoreType", "PEM");
             data.put("tlsClientAuthentication", "true");
             data.put("tlsTrustStore", getFullCaPath());
@@ -142,7 +142,7 @@ public class AutorecoveryResourcesFactory extends BaseResourcesFactory<Autorecov
         String mainArg = "bin/apply-config-from-env.py conf/bookkeeper.conf && ";
         if (tlsEnabledOnBookKeeper) {
             mainArg += "openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key "
-                    + "-out /pulsar/tls-pk8.key -nocrypt && ";
+                    + "-out /pulsar/data/tls-pk8.key -nocrypt && ";
         }
         if (tlsEnabledOnZooKeeper) {
             mainArg += generateCertConverterScript() + " && ";

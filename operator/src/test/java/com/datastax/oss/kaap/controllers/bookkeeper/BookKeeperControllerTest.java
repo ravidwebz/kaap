@@ -399,7 +399,7 @@ public class BookKeeperControllerTest {
         expectedData.put("PULSAR_PREFIX_tlsProviderFactoryClass", "org.apache.bookkeeper.tls.TLSContextFactory");
         expectedData.put("PULSAR_PREFIX_tlsCertificatePath", "/pulsar/certs/tls.crt");
         expectedData.put("PULSAR_PREFIX_tlsKeyStoreType", "PEM");
-        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustStoreType", "PEM");
         expectedData.put("PULSAR_PREFIX_tlsHostnameVerificationEnabled", "true");
         expectedData.put("PULSAR_PREFIX_bookkeeperTLSClientAuthentication", "true");
@@ -414,7 +414,7 @@ public class BookKeeperControllerTest {
         final String stsCommand = sts.getSpec().getTemplate().getSpec().getContainers().get(0)
                 .getArgs().get(0);
         Assert.assertEquals(stsCommand, "bin/apply-config-from-env.py conf/bookkeeper.conf && openssl pkcs8 -topk8 "
-                + "-inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && "
+                + "-inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && "
                 + "OPTS=\"${OPTS} -Dlog4j2.formatMsgNoLookups=true\" exec bin/pulsar bookie");
     }
 
@@ -444,14 +444,14 @@ public class BookKeeperControllerTest {
                 .get(0)
                 .getArgs()
                 .get(0), """
-                bin/apply-config-from-env.py conf/bookkeeper.conf && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && certconverter() {
+                bin/apply-config-from-env.py conf/bookkeeper.conf && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && certconverter() {
                     local name=pulsar
                     local crtFile=/pulsar/certs/tls.crt
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
                     p12File=/pulsar/tls.p12
-                    keyStoreFile=/pulsar/tls.keystore.jks
-                    trustStoreFile=/pulsar/tls.truststore.jks
+                    keyStoreFile=/pulsar/data/tls.keystore.jks
+                    trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
                     head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
                     export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
@@ -513,8 +513,8 @@ public class BookKeeperControllerTest {
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
                     p12File=/pulsar/tls.p12
-                    keyStoreFile=/pulsar/tls.keystore.jks
-                    trustStoreFile=/pulsar/tls.truststore.jks
+                    keyStoreFile=/pulsar/data/tls.keystore.jks
+                    trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
                     head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
                     export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)

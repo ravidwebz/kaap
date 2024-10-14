@@ -542,12 +542,12 @@ public class ProxyControllerTest {
         expectedData.put("PULSAR_EXTRA_OPTS", "-Dpulsar.log.root.level=info");
         expectedData.put("PULSAR_PREFIX_numHttpServerThreads", "10");
         expectedData.put("PULSAR_PREFIX_tlsEnabledWithKeyStore", "true");
-        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/tls.keystore.jks");
-        expectedData.put("PULSAR_PREFIX_tlsTrustStore", "/pulsar/tls.truststore.jks");
-        expectedData.put("PULSAR_PREFIX_brokerClientTlsTrustStore", "/pulsar/tls.truststore.jks");
+        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+        expectedData.put("PULSAR_PREFIX_tlsTrustStore", "/pulsar/data/tls.truststore.jks");
+        expectedData.put("PULSAR_PREFIX_brokerClientTlsTrustStore", "/pulsar/data/tls.truststore.jks");
         expectedData.put("PULSAR_PREFIX_tlsEnabledInProxy", "true");
         expectedData.put("PULSAR_PREFIX_tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", "/pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerClientTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerServicePortTls", "6651");
@@ -583,10 +583,10 @@ public class ProxyControllerTest {
         wsExpectedData.put("PULSAR_PREFIX_webServicePortTls", "8001");
         wsExpectedData.put("PULSAR_PREFIX_tlsEnabled", "true");
         wsExpectedData.put("PULSAR_PREFIX_tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-        wsExpectedData.put("PULSAR_PREFIX_tlsKeyFilePath", "/pulsar/tls-pk8.key");
+        wsExpectedData.put("PULSAR_PREFIX_tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
         wsExpectedData.put("PULSAR_PREFIX_tlsEnabledWithKeyStore", "true");
-        wsExpectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/tls.keystore.jks");
-        wsExpectedData.put("PULSAR_PREFIX_tlsTrustStore", "/pulsar/tls.truststore.jks");
+        wsExpectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+        wsExpectedData.put("PULSAR_PREFIX_tlsTrustStore", "/pulsar/data/tls.truststore.jks");
         wsExpectedData.put("PULSAR_PREFIX_brokerClientTlsEnabled", "true");
         wsExpectedData.put("PULSAR_PREFIX_tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         wsExpectedData.put("PULSAR_PREFIX_brokerClientTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
@@ -599,14 +599,14 @@ public class ProxyControllerTest {
         final String command = deployment.getSpec().getTemplate().getSpec().getContainers().get(0)
                 .getArgs().get(0);
         Assert.assertEquals(command, """
-                openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && certconverter() {
+                openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && certconverter() {
                     local name=pulsar
                     local crtFile=/pulsar/certs/tls.crt
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
                     p12File=/pulsar/tls.p12
-                    keyStoreFile=/pulsar/tls.keystore.jks
-                    trustStoreFile=/pulsar/tls.truststore.jks
+                    keyStoreFile=/pulsar/data/tls.keystore.jks
+                    trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
                     head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
                     export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
@@ -1785,12 +1785,12 @@ public class ProxyControllerTest {
         expectedData.put("PULSAR_EXTRA_OPTS", "-Dpulsar.log.root.level=info");
         expectedData.put("PULSAR_PREFIX_numHttpServerThreads", "10");
         expectedData.put("PULSAR_PREFIX_tlsEnabledWithKeyStore", "true");
-        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/tls.keystore.jks");
-        expectedData.put("PULSAR_PREFIX_tlsTrustStore", "/pulsar/tls.truststore.jks");
-        expectedData.put("PULSAR_PREFIX_brokerClientTlsTrustStore", "/pulsar/tls.truststore.jks");
+        expectedData.put("PULSAR_PREFIX_tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+        expectedData.put("PULSAR_PREFIX_tlsTrustStore", "/pulsar/data/tls.truststore.jks");
+        expectedData.put("PULSAR_PREFIX_brokerClientTlsTrustStore", "/pulsar/data/tls.truststore.jks");
         expectedData.put("PULSAR_PREFIX_tlsEnabledInProxy", "true");
         expectedData.put("PULSAR_PREFIX_tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", "/pulsar/tls-pk8.key");
+        expectedData.put("PULSAR_PREFIX_tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
         expectedData.put("PULSAR_PREFIX_tlsTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerClientTrustCertsFilePath", "/etc/ssl/certs/ca-certificates.crt");
         expectedData.put("PULSAR_PREFIX_brokerServicePortTls", "6651");
@@ -1807,7 +1807,7 @@ public class ProxyControllerTest {
         expectedData.put("PULSAR_PREFIX_kafkaNamespace", "kafka");
         expectedData.put("PULSAR_PREFIX_kafkaListeners", "SASL_SSL://0.0.0.0:9093");
         expectedData.put("PULSAR_PREFIX_kafkaAdvertisedListeners", "SASL_SSL://pul-proxy:9093");
-        expectedData.put("PULSAR_PREFIX_kopSslTruststoreLocation", "/pulsar/tls.truststore.jks");
+        expectedData.put("PULSAR_PREFIX_kopSslTruststoreLocation", "/pulsar/data/tls.truststore.jks");
         expectedData.put("PULSAR_PREFIX_kopTlsEnabledWithBroker", "true");
 
         final Map<String, String> data = createdResource.getResource().getData();

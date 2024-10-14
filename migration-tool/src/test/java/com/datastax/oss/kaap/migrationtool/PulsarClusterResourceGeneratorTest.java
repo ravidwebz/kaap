@@ -549,7 +549,7 @@ public class PulsarClusterResourceGeneratorTest {
                               superUserRoles: "superuser-backup,create-tenant,admin"
                               tlsCertificateFilePath: /pulsar/certs/tls.crt
                               tlsEnabled: "true"
-                              tlsKeyFilePath: /pulsar/tls-pk8.key
+                              tlsKeyFilePath: /pulsar/data/tls-pk8.key
                               tlsProtocols: "TLSv1.3,TLSv1.2"
                               tlsTrustCertsFilePath: /etc/ssl/certs/ca-certificates.crt
                               tokenPublicKey: file:///pulsar/token-public-key/pulsar-public.key
@@ -779,7 +779,7 @@ public class PulsarClusterResourceGeneratorTest {
                               tlsCertificateFilePath: /pulsar/certs/tls.crt
                               tlsEnabledInProxy: "true"
                               tlsEnabledWithBroker: "false"
-                              tlsKeyFilePath: /pulsar/tls-pk8.key
+                              tlsKeyFilePath: /pulsar/data/tls-pk8.key
                               tlsProtocols: "TLSv1.3,TLSv1.2"
                               tlsTrustCertsFilePath: /etc/ssl/certs/ca-certificates.crt
                               tokenPublicKey: file:///pulsar/token-public-key/pulsar-public.key
@@ -867,7 +867,7 @@ public class PulsarClusterResourceGeneratorTest {
                                 superUserRoles: "superuser-backup,create-tenant,admin"
                                 tlsCertificateFilePath: /pulsar/certs/tls.crt
                                 tlsEnabled: "true"
-                                tlsKeyFilePath: /pulsar/tls-pk8.key
+                                tlsKeyFilePath: /pulsar/data/tls-pk8.key
                                 tlsTrustCertsFilePath: /etc/ssl/certs/ca-certificates.crt
                                 tokenPublicKey: file:///pulsar/token-public-key/pulsar-public.key
                                 webServicePort: 8000
@@ -1099,7 +1099,7 @@ public class PulsarClusterResourceGeneratorTest {
                               - create-tenant
                               - admin
                               tlsCertificateFilePath: /pulsar/certs/tls.crt
-                              tlsKeyFilePath: /pulsar/tls-pk8.key
+                              tlsKeyFilePath: /pulsar/data/tls-pk8.key
                               tlsTrustCertsFilePath: /etc/ssl/certs/ca-certificates.crt
                               tokenPublicKey: file:///pulsar/token-public-key/pulsar-public.key
                               topicCompactionFrequencySec: 1800

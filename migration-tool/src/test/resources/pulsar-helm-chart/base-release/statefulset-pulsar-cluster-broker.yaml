@@ -82,7 +82,7 @@ spec:
       containers:
       - args:
         - |
-          bin/apply-config-from-env.py conf/broker.conf && bin/apply-config-from-env.py conf/client.conf && bin/gen-yml-from-env.py conf/functions_worker.yml && echo "OK" > status && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && cat /pulsar/token-superuser/superuser.jwt | tr -d '\n' > /pulsar/data/token-superuser-stripped.jwt && OPTS="${OPTS} -Dlog4j2.formatMsgNoLookups=true" exec bin/pulsar broker
+          bin/apply-config-from-env.py conf/broker.conf && bin/apply-config-from-env.py conf/client.conf && bin/gen-yml-from-env.py conf/functions_worker.yml && echo "OK" > status && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/data/tls-pk8.key -nocrypt && cat /pulsar/token-superuser/superuser.jwt | tr -d '\n' > /pulsar/data/token-superuser-stripped.jwt && OPTS="${OPTS} -Dlog4j2.formatMsgNoLookups=true" exec bin/pulsar broker
         command:
         - sh
         - -c

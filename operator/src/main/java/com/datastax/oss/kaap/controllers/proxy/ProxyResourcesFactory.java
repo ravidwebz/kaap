@@ -245,12 +245,12 @@ public class ProxyResourcesFactory extends BaseResourcesFactory<ProxySetSpec> {
         final boolean tlsEnabledWithBroker = getTlsConfigForProxySet(proxySet).getEnabledWithBroker();
         if (tlsEnabledOnProxySet) {
             data.put("tlsEnabledWithKeyStore", "true");
-            data.put("tlsKeyStore", "/pulsar/tls.keystore.jks");
-            data.put("tlsTrustStore", "/pulsar/tls.truststore.jks");
-            data.put("brokerClientTlsTrustStore", "/pulsar/tls.truststore.jks");
+            data.put("tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+            data.put("tlsTrustStore", "/pulsar/data/tls.truststore.jks");
+            data.put("brokerClientTlsTrustStore", "/pulsar/data/tls.truststore.jks");
             data.put("tlsEnabledInProxy", "true");
             data.put("tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-            data.put("tlsKeyFilePath", "/pulsar/tls-pk8.key");
+            data.put("tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
             final String fullCaPath = getFullCaPath();
             data.put("tlsTrustCertsFilePath", fullCaPath);
             data.put("brokerClientTrustCertsFilePath", fullCaPath);
@@ -279,7 +279,7 @@ public class ProxyResourcesFactory extends BaseResourcesFactory<ProxySetSpec> {
                 data.put("kopSchemaRegistryProxyEnableTls", "true");
                 data.put("kafkaListeners", "SASL_SSL://0.0.0.0:%d".formatted(KAFKA_SSL_PORT));
                 data.put("kafkaAdvertisedListeners", "SASL_SSL://%s:%d".formatted(resourceName, KAFKA_SSL_PORT));
-                data.put("kopSslTruststoreLocation", "/pulsar/tls.truststore.jks");
+                data.put("kopSslTruststoreLocation", "/pulsar/data/tls.truststore.jks");
                 if (tlsEnabledWithBroker) {
                     data.put("kopTlsEnabledWithBroker", "true");
                 }
@@ -335,10 +335,10 @@ public class ProxyResourcesFactory extends BaseResourcesFactory<ProxySetSpec> {
             data.put("webServicePortTls", DEFAULT_WSS_PORT + "");
             data.put("tlsEnabled", "true");
             data.put("tlsCertificateFilePath", "/pulsar/certs/tls.crt");
-            data.put("tlsKeyFilePath", "/pulsar/tls-pk8.key");
+            data.put("tlsKeyFilePath", "/pulsar/data/tls-pk8.key");
             data.put("tlsEnabledWithKeyStore", "true");
-            data.put("tlsKeyStore", "/pulsar/tls.keystore.jks");
-            data.put("tlsTrustStore", "/pulsar/tls.truststore.jks");
+            data.put("tlsKeyStore", "/pulsar/data/tls.keystore.jks");
+            data.put("tlsTrustStore", "/pulsar/data/tls.truststore.jks");
             if (getTlsConfigForProxySet(proxySet).getEnabledWithBroker()) {
                 data.put("brokerClientTlsEnabled", "true");
                 final String fullCaPath = getFullCaPath();
@@ -412,7 +412,7 @@ public class ProxyResourcesFactory extends BaseResourcesFactory<ProxySetSpec> {
 
         if (tlsEnabledOnBroker || tlsEnabledOnProxy) {
             mainArg += "openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key "
-                    + "-out /pulsar/tls-pk8.key -nocrypt && "
+                    + "-out /pulsar/data/tls-pk8.key -nocrypt && "
                     + generateCertConverterScript() + " && ";
         }
         mainArg += "bin/apply-config-from-env.py conf/proxy.conf && ";
@@ -474,7 +474,7 @@ public class ProxyResourcesFactory extends BaseResourcesFactory<ProxySetSpec> {
             }
             if (tlsEnabledOnBroker || tlsEnabledOnProxy) {
                 wsArg += "openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key "
-                        + "-out /pulsar/tls-pk8.key -nocrypt && "
+                        + "-out /pulsar/data/tls-pk8.key -nocrypt && "
                         + generateCertConverterScript() + " && ";
             }
             wsArg += "bin/apply-config-from-env.py conf/websocket.conf && ";
