@@ -588,16 +588,16 @@ public class BrokerControllerTest {
                     local crtFile=/pulsar/certs/tls.crt
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
-                    p12File=/pulsar/tls.p12
+                    p12File=/pulsar/data/tls.p12
                     keyStoreFile=/pulsar/data/tls.keystore.jks
                     trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
-                    head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
-                    export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export PF_tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export tlsKeyStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export PF_tlsKeyStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export PULSAR_PREFIX_brokerClientTlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
+                    head /dev/urandom | base64 | head -c 24 > /pulsar/data/keystoreSecret.txt
+                    export tlsTrustStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export PF_tlsTrustStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export tlsKeyStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export PF_tlsKeyStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export PULSAR_PREFIX_brokerClientTlsTrustStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
                                 
                     openssl pkcs12 \\
                         -export \\
@@ -605,21 +605,21 @@ public class BrokerControllerTest {
                         -inkey ${keyFile} \\
                         -out ${p12File} \\
                         -name ${name} \\
-                        -passout "file:/pulsar/keystoreSecret.txt"
+                        -passout "file:/pulsar/data/keystoreSecret.txt"
                                 
                     keytool -importkeystore \\
                         -srckeystore ${p12File} \\
-                        -srcstoretype PKCS12 -srcstorepass:file "/pulsar/keystoreSecret.txt" \\
+                        -srcstoretype PKCS12 -srcstorepass:file "/pulsar/data/keystoreSecret.txt" \\
                         -alias ${name} \\
                         -destkeystore ${keyStoreFile} \\
-                        -deststorepass:file "/pulsar/keystoreSecret.txt"
+                        -deststorepass:file "/pulsar/data/keystoreSecret.txt"
                                 
                     keytool -import \\
                         -file ${caFile} \\
                         -storetype JKS \\
                         -alias ${name} \\
                         -keystore ${trustStoreFile} \\
-                        -storepass:file "/pulsar/keystoreSecret.txt" \\
+                        -storepass:file "/pulsar/data/keystoreSecret.txt" \\
                         -trustcacerts -noprompt
                 } &&
                 certconverter &&
@@ -680,16 +680,16 @@ public class BrokerControllerTest {
                     local crtFile=/pulsar/certs/tls.crt
                     local keyFile=/pulsar/certs/tls.key
                     caFile=/etc/ssl/certs/ca-certificates.crt
-                    p12File=/pulsar/tls.p12
+                    p12File=/pulsar/data/tls.p12
                     keyStoreFile=/pulsar/data/tls.keystore.jks
                     trustStoreFile=/pulsar/data/tls.truststore.jks
                                 
-                    head /dev/urandom | base64 | head -c 24 > /pulsar/keystoreSecret.txt
-                    export tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export PF_tlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export tlsKeyStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export PF_tlsKeyStorePassword=$(cat /pulsar/keystoreSecret.txt)
-                    export PULSAR_PREFIX_brokerClientTlsTrustStorePassword=$(cat /pulsar/keystoreSecret.txt)
+                    head /dev/urandom | base64 | head -c 24 > /pulsar/data/keystoreSecret.txt
+                    export tlsTrustStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export PF_tlsTrustStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export tlsKeyStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export PF_tlsKeyStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
+                    export PULSAR_PREFIX_brokerClientTlsTrustStorePassword=$(cat /pulsar/data/keystoreSecret.txt)
                                 
                     openssl pkcs12 \\
                         -export \\
@@ -697,21 +697,21 @@ public class BrokerControllerTest {
                         -inkey ${keyFile} \\
                         -out ${p12File} \\
                         -name ${name} \\
-                        -passout "file:/pulsar/keystoreSecret.txt"
+                        -passout "file:/pulsar/data/keystoreSecret.txt"
                                 
                     keytool -importkeystore \\
                         -srckeystore ${p12File} \\
-                        -srcstoretype PKCS12 -srcstorepass:file "/pulsar/keystoreSecret.txt" \\
+                        -srcstoretype PKCS12 -srcstorepass:file "/pulsar/data/keystoreSecret.txt" \\
                         -alias ${name} \\
                         -destkeystore ${keyStoreFile} \\
-                        -deststorepass:file "/pulsar/keystoreSecret.txt"
+                        -deststorepass:file "/pulsar/data/keystoreSecret.txt"
                                 
                     keytool -import \\
                         -file ${caFile} \\
                         -storetype JKS \\
                         -alias ${name} \\
                         -keystore ${trustStoreFile} \\
-                        -storepass:file "/pulsar/keystoreSecret.txt" \\
+                        -storepass:file "/pulsar/data/keystoreSecret.txt" \\
                         -trustcacerts -noprompt
                 } &&
                 certconverter &&
