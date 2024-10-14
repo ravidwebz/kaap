@@ -42,7 +42,7 @@ data:
   acknowledgmentAtBatchIndexLevelEnabled: "true"
   allowAutoTopicCreation: "true"
   allowAutoTopicCreationType: non-partitioned
-  authParams: file:///pulsar/token-superuser-stripped.jwt
+  authParams: file:///pulsar/data/token-superuser-stripped.jwt
   authPlugin: org.apache.pulsar.client.impl.auth.AuthenticationToken
   authenticationEnabled: "true"
   authenticationProviders: org.apache.pulsar.broker.authentication.AuthenticationProviderToken

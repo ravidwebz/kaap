@@ -444,7 +444,7 @@ public class ProxyControllerTest {
         final String cmdArg = deployment.getSpec().getTemplate().getSpec().getContainers().get(0).getArgs()
                 .stream().collect(Collectors.joining(" "));
         Assert.assertTrue(cmdArg.contains(
-                "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/token-superuser-stripped"
+                "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/data/token-superuser-stripped"
                         + ".jwt && "));
 
         final String cmdArgWs = deployment.getSpec().getTemplate().getSpec().getContainers().get(1).getArgs()

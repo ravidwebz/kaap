@@ -187,7 +187,7 @@ public class BrokerResourcesFactory extends BaseResourcesFactory<BrokerSetSpec> 
         data.put("clusterName", global.getClusterName());
 
         if (isAuthTokenEnabled()) {
-            data.put("authParams", "file:///pulsar/token-superuser-stripped.jwt");
+            data.put("authParams", "file:///pulsar/data/token-superuser-stripped.jwt");
             data.put("authPlugin", "org.apache.pulsar.client.impl.auth.AuthenticationToken");
             data.put("authorizationEnabled", "true");
             data.put("authenticationEnabled", "true");
@@ -345,7 +345,7 @@ public class BrokerResourcesFactory extends BaseResourcesFactory<BrokerSetSpec> 
                 + "bin/gen-yml-from-env.py conf/functions_worker.yml && ";
 
         if (isAuthTokenEnabled()) {
-            mainArg += "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/token-superuser-stripped"
+            mainArg += "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/data/token-superuser-stripped"
                     + ".jwt && ";
 
         }

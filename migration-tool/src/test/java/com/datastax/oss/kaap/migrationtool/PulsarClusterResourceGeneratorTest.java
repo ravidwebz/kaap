@@ -494,7 +494,7 @@ public class PulsarClusterResourceGeneratorTest {
                               acknowledgmentAtBatchIndexLevelEnabled: "true"
                               allowAutoTopicCreation: "true"
                               allowAutoTopicCreationType: non-partitioned
-                              authParams: file:///pulsar/token-superuser-stripped.jwt
+                              authParams: file:///pulsar/data/token-superuser-stripped.jwt
                               authPlugin: org.apache.pulsar.client.impl.auth.AuthenticationToken
                               authenticationEnabled: "true"
                               authenticationProviders: org.apache.pulsar.broker.authentication.AuthenticationProviderToken
@@ -943,7 +943,7 @@ public class PulsarClusterResourceGeneratorTest {
                               PULSAR_LOG_LEVEL: info
                               PULSAR_LOG_ROOT_LEVEL: info
                               PULSAR_MEM: -XX:+ExitOnOutOfMemoryError
-                              authParams: file:///pulsar/token-superuser-stripped.jwt
+                              authParams: file:///pulsar/data/token-superuser-stripped.jwt
                               authPlugin: org.apache.pulsar.client.impl.auth.AuthenticationToken
                               tlsTrustCertsFilePath: /etc/ssl/certs/ca-certificates.crt
                             replicas: 1

@@ -1068,7 +1068,7 @@ public class BastionControllerTest {
         expectedData.put("PULSAR_LOG_LEVEL", "info");
         expectedData.put("PULSAR_LOG_ROOT_LEVEL", "info");
         expectedData.put("PULSAR_EXTRA_OPTS", "-Dpulsar.log.root.level=info");
-        expectedData.put("PULSAR_PREFIX_authParams", "file:///pulsar/token-superuser-stripped.jwt");
+        expectedData.put("PULSAR_PREFIX_authParams", "file:///pulsar/data/token-superuser-stripped.jwt");
         expectedData.put("PULSAR_PREFIX_authPlugin", "org.apache.pulsar.client.impl.auth.AuthenticationToken");
 
         final Map<String, String> data = createdResource.getResource().getData();
@@ -1084,7 +1084,7 @@ public class BastionControllerTest {
         final String cmdArg = deployment.getSpec().getTemplate().getSpec().getContainers().get(0).getArgs()
                 .stream().collect(Collectors.joining(" "));
         Assert.assertTrue(cmdArg.contains(
-                "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/token-superuser-stripped"
+                "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/data/token-superuser-stripped"
                         + ".jwt && "));
     }
 

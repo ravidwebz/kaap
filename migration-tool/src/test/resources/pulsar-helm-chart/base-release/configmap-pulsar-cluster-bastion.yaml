@@ -21,7 +21,7 @@ data:
   PULSAR_LOG_LEVEL: info
   PULSAR_LOG_ROOT_LEVEL: info
   PULSAR_MEM: -XX:+ExitOnOutOfMemoryError
-  authParams: file:///pulsar/token-superuser-stripped.jwt
+  authParams: file:///pulsar/data/token-superuser-stripped.jwt
   authPlugin: org.apache.pulsar.client.impl.auth.AuthenticationToken
   tlsTrustCertsFilePath: /etc/ssl/certs/ca-certificates.crt
 kind: ConfigMap

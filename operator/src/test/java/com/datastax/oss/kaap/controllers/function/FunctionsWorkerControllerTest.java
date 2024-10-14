@@ -912,7 +912,7 @@ public class FunctionsWorkerControllerTest {
         final String cmdArg = sts.getSpec().getTemplate().getSpec().getContainers().get(0).getArgs()
                 .stream().collect(Collectors.joining(" "));
         Assert.assertTrue(cmdArg.contains(
-                "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/token-superuser-stripped"
+                "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/data/token-superuser-stripped"
                         + ".jwt && "));
 
         Assert.assertEquals(sts.getSpec().getTemplate().getSpec().getContainers().get(0)

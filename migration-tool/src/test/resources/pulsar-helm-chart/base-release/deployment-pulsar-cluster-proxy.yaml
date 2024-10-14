@@ -86,7 +86,7 @@ spec:
       containers:
       - args:
         - |
-          cat /pulsar/token-superuser/superuser.jwt | tr -d '\n' > /pulsar/token-superuser-stripped.jwt && bin/apply-config-from-env.py conf/proxy.conf && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && OPTS="${OPTS} -Dlog4j2.formatMsgNoLookups=true" exec bin/pulsar proxy
+          cat /pulsar/token-superuser/superuser.jwt | tr -d '\n' > /pulsar/data/token-superuser-stripped.jwt && bin/apply-config-from-env.py conf/proxy.conf && openssl pkcs8 -topk8 -inform PEM -outform PEM -in /pulsar/certs/tls.key -out /pulsar/tls-pk8.key -nocrypt && OPTS="${OPTS} -Dlog4j2.formatMsgNoLookups=true" exec bin/pulsar proxy
         command:
         - sh
         - -c

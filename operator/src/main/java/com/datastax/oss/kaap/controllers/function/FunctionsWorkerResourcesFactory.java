@@ -400,7 +400,7 @@ public class FunctionsWorkerResourcesFactory extends BaseResourcesFactory<Functi
 
         String mainArg = "";
         if (isAuthTokenEnabled()) {
-            mainArg += "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/token-superuser-stripped"
+            mainArg += "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/data/token-superuser-stripped"
                     + ".jwt && ";
         }
 

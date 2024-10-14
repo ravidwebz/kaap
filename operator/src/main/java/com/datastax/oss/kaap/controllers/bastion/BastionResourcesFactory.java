@@ -90,7 +90,7 @@ public class BastionResourcesFactory extends BaseResourcesFactory<BastionSpec> {
         data.put("PULSAR_EXTRA_OPTS", "-Dpulsar.log.root.level=info");
 
         if (isAuthTokenEnabled()) {
-            data.put("authParams", "file:///pulsar/token-superuser-stripped.jwt");
+            data.put("authParams", "file:///pulsar/data/token-superuser-stripped.jwt");
             data.put("authPlugin", "org.apache.pulsar.client.impl.auth.AuthenticationToken");
         }
         boolean targetTlsEnabled = targetProxy ? isTlsEnabledOnProxy() : isTlsEnabledOnBroker();
@@ -141,7 +141,7 @@ public class BastionResourcesFactory extends BaseResourcesFactory<BastionSpec> {
             addSecretTokenVolume(volumeMounts, volumes, "public-key");
             addSecretTokenVolume(volumeMounts, volumes, "admin");
             addSecretTokenVolume(volumeMounts, volumes, "superuser");
-            mainArg += "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/token-superuser-stripped"
+            mainArg += "cat /pulsar/token-superuser/superuser.jwt | tr -d '\\n' > /pulsar/data/token-superuser-stripped"
                     + ".jwt && ";
         }
 
